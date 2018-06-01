@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg main-top-nav">
+  <div class="container"> 
+    <a class="navbar-brand color-white text-weight-700" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" ng-class="{'active': current == 'home'}">
+          <a class="nav-link" href="javascript:void(0)" ui-sref="home">
+            <!-- <i class="fa fa-home"></i>  -->
+            Movie
+          </a>
+        </li>
+        <li class="nav-item" ng-class="{'active': current == 'anime'}">
+          <a class="nav-link" href="javascript:void(0)" ui-sref="anime">
+            <!-- <i class="fa fa-home"></i>  -->
+            Anime
+          </a>
+        </li>
+        <li class="nav-item" ng-class="{'active': current == 'login'}">
+          <button class="btn btn-login" >Login</button>
+        </li>
+      </ul>
+
+      <!-- <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" ng-click="toggleRightBox()">
+            <i class="fa fa-sign-out"></i> 
+          </a>
+        </li>
+      </ul> -->
+
+      <!-- <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="javascript:void(0)" ng-click="toggleRightBox()">
+            <i class="fa fa-navicon"></i> 
+          </a>
+        </li>
+      </ul> -->
+
+      <!-- <div class="input-group pull-right search-box">
+        <input type="text" class="form-control text-weight-700" placeholder="Search keyword" aria-label="Search keyword" aria-describedby="basic-addon1">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary text-weight-700" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</nav>

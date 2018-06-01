@@ -1,0 +1,56 @@
+<div class="wall-content" movie-directive>
+  <!-- <div class="container">  -->
+  <div class="row single-movie-container">
+    <div class="col-12">
+      <button class="btn" ui-sref="home"><i class="fa fa-chevron-left"></i> Back</button>
+      <div class="white-space-20"></div>
+      <!-- <p><a href="javascript:void(0)" ng-click="toggleVideo()" class="pull-right"><i class="fa fa-times"></i></a></p> -->
+    </div>
+
+    <div ng-if="showMovie" class="col-12">
+      <div class="movie-video-container cursor-pointer" ng-click="pausePlay()">
+        <video id="movie-video-id" data-setup="{&quot;language&quot;:&quot;en&quot;}" class="movie-video" controls preload="auto" tabindex="-1"></video>
+        <!-- <div ng-if="!isMovieSet" class="movie-overlay">
+          <img src="../img/play-button-white.png" >
+        </div>  --> 
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="movie-desc-container">
+        <div class="row">
+          <div class="col-3">
+            <div class="img-wrapper">
+              <img ng-src="{{movie_data.image}}">
+            </div>
+          </div>
+          <div class="col-6 no-padding-left">
+            <div class="desc-container">
+              <p class="font-16 text-weight-700"><span ng-bind="movie_data.name"></span> (<span ng-bind="movie_data.year"></span>)</p>
+              <div class="white-space-20"></div>
+              <p class="movie-desc" ng-bind="movie_data.description"></p>
+              <div class="white-space-20"></div>
+              <p class="genre-list">Genre : 
+                <!-- <span><a href="" class="text-underline color-blue-custom">Action</a></span>
+                <span><a href="" class="text-underline color-blue-custom">Comedy</a></span> -->
+                <span ng-if="movie_data.categories[$index] == true" ng-repeat="list in category_list"><a href="" class="text-underline color-blue-custom" ng-bind="list.category_name">Comedy</a></span>
+              </p>
+              <div class="white-space-10"></div>
+              <p>Runtime : <span><a href="" class="text-underline color-blue-custom" ng-bind="movie_data.runtime">126 min</a></span></p>
+              <div class="white-space-10"></div>
+              <p>Quality : <span><a href="" class="quality-badge" ng-bind="movie_data.quality">HD</a></span></p>
+              <div class="white-space-20"></div>
+              <button ng-click="toggleVideo()" class="btn">Watch <i class="fa fa-play right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-10 offset-1">
+      
+    </div>
+
+  </div>
+  <!-- </div> -->
+</div>

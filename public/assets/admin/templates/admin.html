@@ -1,0 +1,174 @@
+<div class="wall-content admin-container h-100" admin-directive>
+  <div class="row h-100">
+    <div class="col-2" ui-view="leftMenu"></div>
+
+    <div class="col-10 no-padding-left">
+      <div class="row">  
+        <div ng-if="movie_view_opt == 0" class="col-12">
+        
+          <div ng-if="showListIsTrue" id="list-container" class="white-box admin-movie-box">
+            <div class="row">
+              <div class="col-9">
+                <button class="btn" ng-click="selectAllMovies()">Select All</button>
+                <button class="btn" ng-click="movieViewOpt(1)">Add</button>
+                <button ng-if="isAnyBoxChecked" class="btn" ng-click="deleteMovies()">Delete(<span ng-bind="checkedMovieArr.length"></span>)</button>
+              </div>
+              <div class="col-3">
+                <div class="search-container text-right" style="height: 30px;">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="border: none;background: transparent;"><i class="fa fa-search"></i></span>
+                    </div>
+                    <input ng-model="movie_search" type="text" class="form-control" placeholder="Search and hit Enter.." style="border-width: 0 0 1px 0;">
+                  </div>
+                </div>
+                <div class="white-space-20"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-2 cursor-pointer" ng-repeat="list in movie_list | filter:movie_search" >
+                <div class="movie-container">
+                  <div class="movie-checkbox">
+                    <input type="checkbox" class="form-check-input no-margin" ng-model="movieCheckbox[$index]" ng-click="movieChecked($index, movieCheckbox[$index])">
+                  </div>
+                  <div class="img-wrapper" ng-click="showMovie(list)">
+                    <img ng-if="list.image != null" ng-src="{{list.image}}">
+                    <img ng-if="list.image == null" src="../img/no_image.png">
+                  </div>
+                  <div class="desc-box" ng-click="showMovie(list)">
+                    <p class="font-14 text-weight-700 color-black-000" ng-bind="list.name">Iron man</p>
+                    <p class="font-12 text-weight-700 color-black-555" ng-bind="list.year">2008</p>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div ng-if="showMovieIsTrue" id="movie-container" class="white-box admin-movie-box">
+            <div class="row">
+              <div class="col-12">
+                <div class="movie-container">
+                  <form name="updateMovieForm" class="update-movie-form" ng-submit="saveMovieDetails(selected_movie_data)">
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="img-wrapper position-relative">
+                          <button class="btn btn-change-movie-photo cursor-pointer" ngf-select="replaceMovieImage(temp_movie_img)" ng-model="temp_movie_img" accept="'image/*'">Change</button>
+                          <img ng-if="selected_movie_data.image != null" ng-src="{{selected_movie_data.image}}">
+                          <img ng-if="selected_movie_data.image == null" src="../img/no_image.png">
+                        </div>    
+                      </div>
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label>Name</label>
+                          <input class="form-control" ng-model="selected_movie_data.name"></input>
+                        </div>
+                        <div class="form-group">
+                          <label>Year</label>
+                          <input class="form-control" ng-model="selected_movie_data.year"></input>
+                        </div>
+                        <div class="form-group no-margin-bottom">
+                          <label>Categories</label>
+                        </div>
+
+                        <div class="form-check" ng-repeat="list in category_list">
+                          <input type="checkbox" class="form-check-input" ng-model="selected_movie_data.categories[$index]" ng-click="selectCategory($index,selected_movie_data.categories[$index])">
+                          <label class="form-check-label" ng-bind="list.category_name"></label>
+                        </div>
+                        
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label>Link</label>
+                          <textarea class="form-control" ng-model="selected_movie_data.link_1" rows="3" style="height: 105px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <label>Description</label>
+                          <textarea class="form-control" ng-model="selected_movie_data.description" rows="3" style="height: 105px;"></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-11">
+                        <div class="white-space-50"></div>
+                        <button class="btn" ng-click="showList()">Back</button>
+                        <button ng-disabled="!selected_movie_data.name || !selected_movie_data.year || !checkCategoryHasTrue( selected_movie_data )" class="btn" type="submit">Update</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-if="movie_view_opt == 1" class="col-12 no-padding-right">
+        
+          <div id="add-container" class="white-box admin-movie-box">
+            <p class="font-20 text-weight-700">Add Movie</p>
+            <p class="add-tor-opt">
+              <a href="javascript:void(0)" ng-class="{'active':add_opt == 0}" ng-click="movieAddOpt(0)"><span class="text-underline">Input</span></a>
+              <a href="javascript:void(0)" ng-class="{'active':add_opt == 1}" ng-click="movieAddOpt(1)"><span class="text-underline">Bulk upload</span></a>
+
+              <a ng-if="add_opt == 1" href="javascript:void(0)" ng-click="downloadTemplate()" class="pull-right"><span class="text-underline">Download .xlsx template</span></a>
+            </p>
+            <div class="white-space-10"></div>
+
+            <form ng-if="add_opt == 0" ng-submit="submitMovie( add_movie_data )" style="width: 30%;">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="add_movie_data.name" placeholder="">
+              </div>
+              <div class="form-group">
+                <label>Year</label>
+                <input type="text" class="form-control" ng-model="add_movie_data.year" placeholder="">
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <!-- <input type="text" class="form-control" ng-model="add_movie_data.year" laceholder=""> -->
+                <textarea class="form-control" ng-model="add_movie_data.description" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Categories</label>
+              </div>
+              
+              <div class="form-check" ng-repeat="list in category_list">
+                <input type="checkbox" class="form-check-input" ng-model="add_movie_data.categories[$index]" ng-click="selectCategoryforAdding($index,add_movie_data.categories[$index])">
+                <label class="form-check-label" ng-bind="list.category_name"></label>
+              </div>
+
+              <div class="form-group">
+                <div class="white-space-20"></div>
+                <button class="btn" ng-click="movieViewOpt(0)">Cancel</button>
+                <button ng-disabled="!add_movie_data.name || !add_movie_data.year || !add_movie_data.description || !checkCategoryHasTrue( add_movie_data )" type="submit" class="btn submit-movie-btn">Submit</button>
+              </div>
+            </form>
+
+            <form ng-if="add_opt == 1" ng-submit="sendExcelMovie()" style="width: 60%;">
+              <div ngf-drop="excelMovie($file)" ngf-select="excelMovie($file)" ng-model="movieFileUpload" class="drop-box"
+                  ngf-drag-over-class="'dragover'" accept="xlsx" style="cursor: pointer;">
+                <img src="../img/upload.png" style="width: 70px;">
+                <div class="white-space-20"></div>
+                <p class="text-weight-700">Drop .xlsx file here or click to upload</p>
+
+                <div class="white-space-20"></div>
+                <p ng-bind="movieFileUpload.name" class="text-weight-700" style="color:green !important;"></p>
+
+                <!-- <p class="font-10 text-weight-700" style="margin-top: 20px;">Note: Enable Macros in excel file.</p>   -->
+                <p class="font-10 text-weight-700">Note: Only the recommended downloadable excel format above is allowed.</p>
+              </div>
+              <div class="white-space-10"></div>
+              <p ng-if="upload_err" class="text-error text-weight-700 text-center">asdf</p>
+              <p ng-if="upload_success" class="text-success text-weight-700 text-center">asdf</p>
+              <div class="form-group">
+                <div class="white-space-10"></div>
+                <button class="btn" ng-click="movieViewOpt(0)">Cancel</button>
+                <button ng-disabled="!selected_excel_upload" type="submit" class="btn submit-movie-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
