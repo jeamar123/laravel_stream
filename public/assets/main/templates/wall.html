@@ -3,8 +3,8 @@
     <div class="row movies-container">
 
       <div class="col-9">
-        <p class="text-weight-700 font-25">Latest Movies</p>
         <div class="white-space-10"></div>
+        <!-- <p class="text-weight-700 font-20">Latest Movies</p> -->
       </div>
 
       <div class="col-3 wall-search-container">
@@ -17,8 +17,15 @@
         <div class="white-space-10"></div>
       </div>
 
-      <div class="col-2 item" ng-repeat="list in movie_list | filter : searchMovie" ui-sref="movie({movie_id:list.id})" style="cursor: pointer;">
+      <div class="col-2 item cursor-pointer" ng-repeat="list in movie_list | filter : searchMovie" ui-sref="movie({movie_id:list.id})" >
         <div class="white-box movie-box">
+          <div class="poster-overlay cursor-pointer" ui-sref="movie({movie_id:list.id})">
+            <div class="poster-img">
+              <div class="play-img">
+                <img src="../img/play-button-white.png" style="height: 70px;width: 70px;">
+              </div>
+            </div>
+          </div>
           <div class="img-wrapper">
             <img ng-if="list.image != null" ng-src="{{ list.image }}">
             <img ng-if="list.image == null" src="../img/no_image.png">
@@ -27,11 +34,6 @@
           <p class=" text-weight-700 color-black-000" ng-bind="list.name">Iron man</p>
           <p class="font-10 text-weight-700 color-black-555" ng-bind="list.year">2008</p>
           </div>
-          <!-- <div class="dl-box">
-            <button class="btn" ng-if="list.link_1 != null" ng-click="dowloadTorrent( list.link_1 );"><i class="fa fa-download"></i> 3D</button>
-            <button class="btn" ng-if="list.link_2 != null" ng-click="dowloadTorrent( list.link_2 );"><i class="fa fa-download"></i> 720p</button>
-            <button class="btn" ng-if="list.link_3 != null" ng-click="dowloadTorrent( list.link_3 );"><i class="fa fa-download"></i> 1080p</button>
-          </div> -->
         </div>
       </div>
 

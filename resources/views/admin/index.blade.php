@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="../assets/admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../css/loader.css">
   </head>
   <body ng-controller="mainController">
     <div class="main-body-container">

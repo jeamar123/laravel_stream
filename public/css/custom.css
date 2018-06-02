@@ -601,7 +601,7 @@ input,textarea,button{
 
 .white-box{
     background-color: #FFF;
-    box-shadow: 1px 1px 10px #dadada;
+    box-shadow: 1px 1px 10px #a7a7a7;
     min-height: 320px;
     width: 100%;
     /*padding: 20px;*/

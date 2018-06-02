@@ -17,16 +17,13 @@ app.directive('wallDirective', [
 
         scope.searchMovie = "";
 
-        // scope.dowloadTorrent = ( data ) =>{
-        //   console.log(data);
-        //   window.location = data;
-        // }
-
         scope.getAllMovies = ( ) =>{
+          scope.toggleLoading();
           appModule.fetchMovies()
             .then(function(response){
               console.log(response);
               scope.movie_list = response.data;
+              scope.toggleLoading();
             });
         }
 
@@ -36,6 +33,20 @@ app.directive('wallDirective', [
               // console.log(response);
               scope.category_list = response.data;
             });
+        }
+
+        var isLoading = false;
+
+        scope.toggleLoading = ( ) =>{
+          if( isLoading == true ){
+            isLoading = false;
+            setTimeout(function() {
+              $(".body-loader").fadeOut("slow");
+            }, 2000);
+          }else{
+            $(".body-loader").show();
+            isLoading = true;
+          }
         }
 
         scope.onLoad = ( ) =>{
