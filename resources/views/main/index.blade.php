@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Brand Name</title>
+    <title>Watch Movies Online for Free.</title>
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/ico">
 
     <link rel="stylesheet" type="text/css" href="../css/fonts.css">
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="../assets/main/css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <link rel="stylesheet" type="text/css" href="../css/loader.css">
   </head>
   <body ng-controller="mainController">
     <div class="main-body-container">
@@ -23,6 +24,14 @@
       <section class="main-content-container" >
         <div ui-view="main"></div>
       </section>
+    </div>
+
+    <div class="body-loader">
+      <div class="loader-container">
+        <div class="loader">
+          <img src="../img/triangle_loader.gif" style="width: 8%;">
+        </div>
+      </div>  
     </div>
   </body>
 

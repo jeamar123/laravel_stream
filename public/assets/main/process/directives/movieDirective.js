@@ -25,30 +25,31 @@ app.directive('movieDirective', [
             scope.showMovie = false;
           }else{
             scope.showMovie = true;
+            scope.toggleLoading();
             setTimeout(function() {
               $(".movie-video").attr('src',scope.movie_data.movie_link);
-              // console.log($('#movie-video-id'));
+              scope.toggleLoading();
             }, 500);
           }
         }
 
-        scope.pausePlay = ( ) =>{
-          // var myVideo = $('#movie-video-id')[0];
-          // if (myVideo.paused){
-          //   myVideo.play(); 
-          //   scope.isMovieSet = true;
-          // }else{
-          //   myVideo.pause(); 
-          //   scope.isMovieSet = false;
-          // }
+        scope.downloadVideo = ( ) =>{
+          scope.toggleLoading();
+          window.location = scope.movie_data.torrent_link;
+
+          setTimeout(function() {
+            scope.toggleLoading();
+          }, 1000);
         }
 
         scope.getMoveDetails = ( id ) =>{
+          scope.toggleLoading();
           appModule.fetchMovieByID( id )
             .then(function(response){
               console.log(response);
               scope.movie_data = response.data;
               scope.movie_data.categories = eval(scope.movie_data.categories);
+              scope.toggleLoading();
             });
         }
 
@@ -58,6 +59,20 @@ app.directive('movieDirective', [
               // console.log(response);
               scope.category_list = response.data;
             });
+        }
+
+        var isLoading = false;
+
+        scope.toggleLoading = ( ) =>{
+          if( isLoading == true ){
+            isLoading = false;
+            setTimeout(function() {
+              $(".body-loader").fadeOut("slow");
+            }, 2000);
+          }else{
+            $(".body-loader").show();
+            isLoading = true;
+          }
         }
 
         scope.onLoad = ( ) =>{
