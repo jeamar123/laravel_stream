@@ -240,9 +240,7 @@ app.directive('adminDirective', [
                   });
 
                 if( key == (scope.checkedMovieArr.length-1) ){
-                  
-                  // scope.onLoad();
-                  scope.getMovies();
+                  scope.onLoad();
                   setTimeout(function() {
                     swal({
                       title: "Success!",
@@ -285,10 +283,14 @@ app.directive('adminDirective', [
 
         scope.submitMovie = ( data ) =>{
           data.categories = angular.toJson(data.categories);
-          console.log(data);
           appModule.addMovie( data )
             .then(function(response){
               console.log(response);
+
+              scope.add_movie_data = {
+                categories : [false,false,false,false],
+              };
+              scope.getMovies();
             });
         }
 

@@ -8,7 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DateTime;
 use Excel;
+
 use App\Movie;
+use App\Categories;
 
 class MovieController extends Controller
 {
@@ -28,7 +30,7 @@ class MovieController extends Controller
     }
 
     public function getAllMovies(){
-      return Movie::orderBy('created_at', 'asc')->get();
+      return Movie::orderBy('created_at', 'desc')->get();
     }
 
     public function getMovieByID($id){
@@ -69,9 +71,8 @@ class MovieController extends Controller
       $save_data = array(
         "name" => $request->get('name'),
         "year" => $request->get('year'),
-        "link_1" => $request->get('link_1'),
-        "link_2" => $request->get('link_2'),
-        "link_3" => $request->get('link_3'),
+        "movie_link" => $request->get('movie_link'),
+        "torrent_link" => $request->get('torrent_link'),
         "categories" => $request->get('categories'),
       );
 
@@ -125,15 +126,7 @@ class MovieController extends Controller
           }
 
           foreach ($data_array as $key => $value) {
-            if( 
-              ($value->name == null && $value->year == null && $value->category == null && $value->description != null) ||
-              ($value->name == null && $value->year == null && $value->category != null && $value->description == null) ||
-              ($value->name == null && $value->year != null && $value->category == null && $value->description == null) ||
-              ($value->name != null && $value->year == null && $value->category == null && $value->description == null) 
-            ){
-              return array('status' => FALSE, 'message' => 'Some rows have empty data.');
-            }
-            if($value->name != null && $value->year != null && $value->category != null && $value->description != null) {
+            if($value->name != null && $value->category != null && $value->movie_link != null && $value->torrent_link != null) {
               $checkCount = Movie::where("name",$value->name)->count();
               if( $checkCount > 0 ) {
                 return array(
@@ -151,14 +144,9 @@ class MovieController extends Controller
           }
 
           foreach ($movie_arr as $key => $data) {
-            $cat_list = array(
-              0        => 'Action',
-              1        => 'Comedy',
-              2        => 'Romance',
-              3        => 'Sci-Fi',
-            );
-
-            $cat_index = array_search($data->category, $cat_list); 
+            $cat_list = Categories::orderBy('category_name', 'asc')->get();
+            $arr = json_decode($cat_list);
+            $cat_index = array_search($data->category, array_column($arr, 'category_name')); 
             $categories = "";
 
             for ($i=0; $i < count($cat_list); $i++) { 
@@ -175,16 +163,16 @@ class MovieController extends Controller
                   $categories = $categories . ",false";
                 }
               }
-              var_dump($categories);
             }
 
 
             $temp_data = array(
-              'image'             => $data->image,
               'name'              => $data->name,
               'year'              => $data->year,
               'categories'        => "[" . $categories . "]",
               'description'       => $data->description,
+              'movie_link'        => $data->movie_link,
+              'torrent_link'      => $data->torrent_link,
             );
 
             $insert_movie = Movie::create($temp_data);

@@ -33,7 +33,7 @@ app.directive('wallDirective', [
         scope.getCategories = ( ) =>{
           appModule.fetchCategories()
             .then(function(response){
-              console.log(response);
+              // console.log(response);
               scope.category_list = response.data;
             });
         }

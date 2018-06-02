@@ -9,6 +9,13 @@ class Movie extends Model
   //
 	protected $table = 'movies';
 	protected $fillable = [
-		'image','name', 'year', 'categories', 'description', 'link_1', 'link_2', 'link_3',
+		'image', 
+		'movie_thumbnail', 
+		'name', 
+		'year', 
+		'categories', 
+		'description', 
+		'movie_link', 
+		'torrent_link'
   ];
 }

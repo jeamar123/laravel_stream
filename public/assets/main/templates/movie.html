@@ -36,9 +36,15 @@
                 <span ng-if="movie_data.categories[$index] == true" ng-repeat="list in category_list"><a href="" class="text-underline color-blue-custom" ng-bind="list.category_name">Comedy</a></span>
               </p>
               <div class="white-space-10"></div>
-              <p>Runtime : <span><a href="" class="text-underline color-blue-custom" ng-bind="movie_data.runtime">126 min</a></span></p>
+              <p>Runtime : 
+                <span ng-if="movie_data.runtime != null"><a href="" class="text-underline color-blue-custom" ng-bind="movie_data.runtime">126 min</a></span>
+                <span ng-if="movie_data.runtime == null" class="text-italic">Not Available</span>
+              </p>
               <div class="white-space-10"></div>
-              <p>Quality : <span><a href="" class="quality-badge" ng-bind="movie_data.quality">HD</a></span></p>
+              <p>Quality : 
+                <span ng-if="movie_data.quality != null"><a href="" class="quality-badge" ng-bind="movie_data.quality">HD</a></span>
+                <span ng-if="movie_data.quality == null" class="text-italic">Not Available</span>
+              </p>
               <div class="white-space-20"></div>
               <button ng-click="toggleVideo()" class="btn">Watch <i class="fa fa-play right"></i></button>
             </div>

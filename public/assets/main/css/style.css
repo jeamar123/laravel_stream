@@ -170,7 +170,8 @@ body,html{
   }
 
   .movies-container{
-    margin: 30px auto;
+    /*margin: 30px auto;*/
+    margin: 0px 15px;
     /*width: 80%;*/
   }
 
@@ -179,12 +180,12 @@ body,html{
   }
 
   .movies-container .movie-box{
-    height: 275px !important;
+    height: 325px !important;
     min-height: unset !important;
   }
 
   .movies-container .movie-box img{
-    height: 230px;
+    height: 280px;
   }
 
   .movies-container .item .desc-box{

@@ -53,6 +53,17 @@ app.config(function($stateProvider, $urlRouterProvider){
           templateUrl: '../assets/main/templates/movie.html'
         }
       },
+    })
+    .state('anime', {
+      url: '/anime',
+      views: {
+        'header': {
+          templateUrl: '../assets/main/templates/header.html'
+        },
+        'main': {
+          templateUrl: '../assets/main/templates/anime.html'
+        }
+      },
     });
 
     $urlRouterProvider.otherwise('/');

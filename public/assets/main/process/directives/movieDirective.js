@@ -26,7 +26,7 @@ app.directive('movieDirective', [
           }else{
             scope.showMovie = true;
             setTimeout(function() {
-              $(".movie-video").attr('src',scope.movie_data.link_1);
+              $(".movie-video").attr('src',scope.movie_data.movie_link);
               // console.log($('#movie-video-id'));
             }, 500);
           }
@@ -55,7 +55,7 @@ app.directive('movieDirective', [
         scope.getCategories = ( ) =>{
           appModule.fetchCategories()
             .then(function(response){
-              console.log(response);
+              // console.log(response);
               scope.category_list = response.data;
             });
         }

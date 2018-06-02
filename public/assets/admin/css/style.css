@@ -218,7 +218,8 @@ body,html{
   }
 
   #movie-container .update-movie-form .form-check-label,
-  #movie-container .update-movie-form input{
+  #movie-container .update-movie-form input,
+  #movie-container .update-movie-form textarea{
     font-style: italic;
   }
 
@@ -255,7 +256,8 @@ body,html{
   }
 
   #add-container .form-check-label,
-  #add-container .form-group input{
+  #add-container .form-group input,
+  #add-container .form-group textarea{
     font-style: italic;
   }
 
