@@ -19,6 +19,8 @@ app.directive('movieDirective', [
         scope.showMovie = false;
         scope.isMovieSet = false;
 
+        var isLoading = false;
+
         scope.toggleVideo = ( ) =>{
 
           if( scope.showMovie == true ){
@@ -46,7 +48,7 @@ app.directive('movieDirective', [
           scope.toggleLoading();
           appModule.fetchMovieByID( id )
             .then(function(response){
-              console.log(response);
+              // console.log(response);
               scope.movie_data = response.data;
               scope.movie_data.categories = eval(scope.movie_data.categories);
               scope.toggleLoading();
@@ -61,8 +63,6 @@ app.directive('movieDirective', [
             });
         }
 
-        var isLoading = false;
-
         scope.toggleLoading = ( ) =>{
           if( isLoading == true ){
             isLoading = false;
@@ -75,7 +75,32 @@ app.directive('movieDirective', [
           }
         }
 
+        scope.getSession = ( ) =>{
+          appModule.checkSession()
+            .then(function(response) {
+              // console.log(response);
+              if( response.data.isActive){
+                scope.isSessionActive = true;
+                scope.getSessionData();
+              }else{
+                scope.isSessionActive = false;
+                $state.go('auth');
+              }
+            });
+        }
+
+        scope.getSessionData = ( ) =>{
+          appModule.fetchSession()
+            .then(function(response) {
+              // console.log(response);
+              if( response.data){
+                scope.user_data = response.data.user;
+              }
+            });
+        }
+
         scope.onLoad = ( ) =>{
+          scope.getSession();
           scope.getCategories();
           scope.getMoveDetails($stateParams.movie_id);
         }

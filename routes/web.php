@@ -17,6 +17,9 @@
 
 Route::post('/login', 'AuthController@login');
 Route::post('/signup', 'AuthController@register');
+Route::get('/check_session', 'AuthController@checkSessionStatus');
+Route::get('/get_session', 'AuthController@get_session');
+Route::get('/logout', 'AuthController@logout');
 
 Route::get('/', 'HomeController@getHomeView');
 

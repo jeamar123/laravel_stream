@@ -42,7 +42,7 @@ body,html{
   }
 
   .main-top-nav .navbar-brand{
-    margin: 0 0 0 30px;
+    margin: 0 0 0 50px;
     font-weight: 700;
     padding: 14px 20px !important;
   }
@@ -111,13 +111,12 @@ body,html{
   }
 
   .auth-content .white-box .img-wrapper{
-    width: 100px;
-    height: 100px;
+    width: 150px;
     margin: 0 auto 30px auto;
   }
 
   .auth-content .white-box .img-wrapper img{
-    border-radius: 50%;
+    /*border-radius: 50%;*/
   }
 
   .auth-content .white-box .form-group input{

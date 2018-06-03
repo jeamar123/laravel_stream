@@ -3,9 +3,10 @@
   <div ng-if="!isSignupShow" class="login-container">
     <div class="white-box">
       <div class="img-wrapper">
-        <img src="assets/main/img/lock.png">
+        <img src="../img/pacmovies.png">
       </div>
       <form ng-submit="login(login_data)">
+        <p class="color-black-333 text-weight-700 font-18 text-center" style="margin-bottom: 30px;">Login now to watch movies for Free!</p>
         <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" class="form-control" id="email" ng-model="login_data.email">
@@ -21,11 +22,12 @@
 
         <div class="form-group text-center">
           <div class="white-space-20"></div>
-          <p ng-if="login_err" class="text-error text-weight-700">User not found. Please check your credentials.</p>
+          <p ng-if="login_err" class="text-error text-weight-700" ng-bind="login_err_msg">User not found. Please check your credentials.</p>
           <div class="white-space-10"></div>
           <button type="submit" class="btn btn-primary submit-btn">Go</button>
           <div class="white-space-10"></div>
           <a href="javascript:void(0)" ng-click="toggleSignup()" class="text-hover-underline color-black-333"><p class="font-11 text-weight-700">No Account yet? Sign up.</p></a>
+          <a href="javascript:void(0)" ui-sref="home" class="text-hover-underline color-black-333"><p class="font-11 text-weight-700" style="margin-top: 20px;">Watch Movies now!</p></a>
         </div>
         
       </form>
@@ -35,7 +37,7 @@
   <div ng-if="isSignupShow" class="signup-container">
     <div class="white-box">
       <div class="img-wrapper">
-        <img src="assets/main/img/user-512.png">
+        <img src="../img/pacmovies.png">
       </div>
       <form>
         <div class="form-group">
@@ -65,6 +67,7 @@
           <button ng-disabled="!signup_data.name || !signup_data.email || !signup_data.password || !signup_data.re_password" type="submit" class="btn btn-primary submit-btn" ng-click="signup(signup_data)">Submit</button>
           <div class="white-space-10"></div>
           <a href="javascript:void(0)" ng-click="toggleSignup()" class="text-hover-underline color-black-333"><p class="font-11 text-weight-700">Already have Account? Log in.</p></a>
+          <a href="javascript:void(0)" ui-sref="home" class="text-hover-underline color-black-333"><p class="font-11 text-weight-700" style="margin-top: 20px;">Watch Movies now!</p></a>
         </div>
         
       </form>

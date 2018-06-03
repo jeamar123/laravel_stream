@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Watch Movies Online for Free.</title>
-    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/ico">
+    <title>PacVideos - Watch Movies Online for Free.</title>
+    <link rel="shortcut icon" href="{{ asset('img/pacman.png') }}" type="image/ico">
 
     <link rel="stylesheet" type="text/css" href="../css/fonts.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
@@ -48,10 +48,12 @@
 
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/controllers/mainController.js"></script>
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/controllers/checkController.js"></script>
 
 
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/authDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/wallDirective.js"></script>
+  <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/animeDirective.js"></script>
   <script type="text/javascript" src="<?php echo $server; ?>/assets/main/process/directives/movieDirective.js"></script>
 
 

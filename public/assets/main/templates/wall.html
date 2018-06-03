@@ -17,9 +17,9 @@
         <div class="white-space-10"></div>
       </div>
 
-      <div class="col-2 item cursor-pointer" ng-repeat="list in movie_list | filter : searchMovie" ui-sref="movie({movie_id:list.id})" >
+      <div class="col-2 item cursor-pointer" ng-repeat="list in movie_list | filter : searchMovie">
         <div class="white-box movie-box">
-          <div class="poster-overlay cursor-pointer" ui-sref="movie({movie_id:list.id})">
+          <div class="poster-overlay cursor-pointer" ng-click="goToMovie( list )">
             <div class="poster-img">
               <div class="play-img">
                 <img src="../img/play-button-white.png" style="height: 70px;width: 70px;">
@@ -30,9 +30,9 @@
             <img ng-if="list.image != null" ng-src="{{ list.image }}">
             <img ng-if="list.image == null" src="../img/no_image.png">
           </div>
-          <div class="desc-box">
-          <p class=" text-weight-700 color-black-000" ng-bind="list.name">Iron man</p>
-          <p class="font-10 text-weight-700 color-black-555" ng-bind="list.year">2008</p>
+          <div class="desc-box" ng-click="goToMovie( list )">
+            <p class=" text-weight-700 color-black-000" ng-bind="list.name">Iron man</p>
+            <p class="font-10 text-weight-700 color-black-555" ng-bind="list.year">2008</p>
           </div>
         </div>
       </div>
