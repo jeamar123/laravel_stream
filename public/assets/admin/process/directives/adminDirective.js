@@ -136,7 +136,9 @@ app.directive('adminDirective', [
           }
         }
 
-
+        scope.showMovieVideo = ( data ) =>{
+          window.open( scope.serverUrl + '#/movie/' + data.id , '_blank');
+        }
 
 
 // ------------------- HTTP REQUESTS ------------------- //
@@ -297,7 +299,7 @@ app.directive('adminDirective', [
         scope.getCategories = ( ) =>{
           appModule.fetchCategories()
             .then(function(response){
-              console.log(response);
+              // console.log(response);
               scope.category_list = response.data;
             });
         }
@@ -305,7 +307,7 @@ app.directive('adminDirective', [
         scope.getMovies = ( ) =>{
           appModule.fetchMovies( )
             .then(function(response){
-              console.log(response);
+              // console.log(response);
               angular.forEach( response.data, function(value,key){
                 value.categories = eval(value.categories);
                 if( key == (response.data.length-1) ){

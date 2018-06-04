@@ -40,7 +40,10 @@ app.config(function($stateProvider, $urlRouterProvider){
         },
         'main': {
           templateUrl: '../assets/main/templates/wall.html'
-        }
+        },
+        'footer': {
+          templateUrl: '../assets/main/templates/footer.html'
+        },
       },
     })
     .state('movie', {
@@ -51,7 +54,10 @@ app.config(function($stateProvider, $urlRouterProvider){
         },
         'main': {
           templateUrl: '../assets/main/templates/movie.html'
-        }
+        },
+        'footer': {
+          templateUrl: '../assets/main/templates/footer.html'
+        },
       },
     })
     .state('anime', {
@@ -62,7 +68,10 @@ app.config(function($stateProvider, $urlRouterProvider){
         },
         'main': {
           templateUrl: '../assets/main/templates/anime.html'
-        }
+        },
+        'footer': {
+          templateUrl: '../assets/main/templates/footer.html'
+        },
       },
     });
 

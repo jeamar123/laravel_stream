@@ -28,6 +28,8 @@ app.directive('movieDirective', [
           }else{
             scope.showMovie = true;
             scope.toggleLoading();
+            // var blob = new Blob([scope.movie_data.movie_link], {type : 'application/json'});
+            // var movie_url = URL.createObjectURL(blob);
             setTimeout(function() {
               $(".movie-video").attr('src',scope.movie_data.movie_link);
               scope.toggleLoading();
@@ -48,7 +50,7 @@ app.directive('movieDirective', [
           scope.toggleLoading();
           appModule.fetchMovieByID( id )
             .then(function(response){
-              // console.log(response);
+              console.log(response);
               scope.movie_data = response.data;
               scope.movie_data.categories = eval(scope.movie_data.categories);
               scope.toggleLoading();
@@ -68,7 +70,7 @@ app.directive('movieDirective', [
             isLoading = false;
             setTimeout(function() {
               $(".body-loader").fadeOut("slow");
-            }, 2000);
+            }, 1000);
           }else{
             $(".body-loader").show();
             isLoading = true;

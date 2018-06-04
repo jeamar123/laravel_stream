@@ -17,7 +17,7 @@
         <div class="white-space-10"></div>
       </div>
 
-      <div class="col-2 item cursor-pointer" ng-repeat="list in movie_list | filter : searchMovie">
+      <div ng-if="list.movie_link" class="col-2 item cursor-pointer" ng-repeat="list in movie_list | filter : searchMovie">
         <div class="white-box movie-box">
           <div class="poster-overlay cursor-pointer" ng-click="goToMovie( list )">
             <div class="poster-img">
