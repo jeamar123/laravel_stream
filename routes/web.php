@@ -38,3 +38,5 @@ Route::get('/get_categories/{id}', 'CategoryController@getCategoryByID');
 Route::post('/add_category', 'CategoryController@addCategory');
 Route::post('/update_category', 'CategoryController@updateCategory');
 Route::get('/delete_category/{id}', 'CategoryController@deleteCategory');
+
+

@@ -109,6 +109,8 @@ app.directive('movieDirective', [
 
         scope.onLoad();
 
+        
+
       }
     }
 
